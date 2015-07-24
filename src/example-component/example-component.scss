@@ -1,0 +1,12 @@
+.example-component {
+	background: $color__primary;
+	border-radius: $border-radius--base;
+	padding: $spacing--m;
+	margin: $spacing--m;
+
+	&__description {
+		margin: 0;
+		text-align: center;
+		color: $color__white;
+	}
+}
