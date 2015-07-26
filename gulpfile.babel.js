@@ -28,7 +28,6 @@ let distFolder = './dist',
     srcStyleFiles = 'src/**/*.scss',
     scriptEntryPoint = 'src/main.js',
     srcScriptFiles = 'src/**/*.js',
-    scriptTestFiles = 'src/**/*-test.js',
     srcImageFiles = [
         './src/images/**/*.{gif,jpg,png,svg}'
     ],
