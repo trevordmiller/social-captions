@@ -1,6 +1,6 @@
-# JS Code Quality Example
+# Social Captions
 
-A step by step walkthrough of building a feature of a JavaScript app with linting, unit tests, continuous integration, and continuous deployment for an [egghead.io](https://egghead.io/) video series.
+A step by step walkthrough of setting up tests and Continuous Integration with a JavaScript image sharing app (for an [www.egghead.io](https://egghead.io/) series of lessons).
 
 Each step of the project is a branch labelled as `#-lesson-name`, so just checkout whatever lesson in the series you are working with.
 

@@ -1,7 +1,7 @@
 {
   "name": "social-captions",
   "version": "1.0.0",
-  "description": "A step by step walkthrough of adding JavaScript features to an image sharing app with linting, unit tests, continuous integration, and continuous deployment for an https://egghead.io video series.",
+  "description": "A step by step walkthrough of setting up tests and Continuous Integration with a JavaScript image sharing app (for an https://egghead.io series of lessons).",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp serve",
