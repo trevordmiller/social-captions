@@ -1,23 +1,22 @@
 {
-  "name": "js-code-quality-example",
+  "name": "social-captions",
   "version": "1.0.0",
-  "description": "A step by step walkthrough of building a feature of a JavaScript app with linting, unit tests, continuous integration, and continuous deployment for an https://egghead.io video series.",
+  "description": "A step by step walkthrough of adding JavaScript features to an image sharing app with linting, unit tests, continuous integration, and continuous deployment for an https://egghead.io video series.",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp serve",
-    "lint": "gulp lint",
-    "test": "gulp test"
+    "lint": "gulp lint"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trevordmiller/js-code-quality-example"
+    "url": "https://github.com/trevordmiller/social-captions"
   },
   "author": "Trevor D. Miller <trevordmiller@icloud.com> (www.trevordmiller.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/trevordmiller/js-code-quality-example/issues"
+    "url": "https://github.com/trevordmiller/social-captions/issues"
   },
-  "homepage": "https://github.com/trevordmiller/js-code-quality-example#readme",
+  "homepage": "https://github.com/trevordmiller/social-captions#readme",
   "devDependencies": {
     "babel": "^5.6.23",
     "babelify": "^6.1.2",
@@ -28,6 +27,7 @@
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^5.1.0",
     "gulp-filter": "^2.0.2",
+    "gulp-imagemin": "^2.3.0",
     "gulp-jshint": "^1.11.2",
     "gulp-minify-css": "^1.2.0",
     "gulp-mocha": "^2.1.3",
