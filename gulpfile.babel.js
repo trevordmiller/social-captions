@@ -5,7 +5,6 @@ import util from 'gulp-util';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
-import mocha from 'gulp-mocha';
 import uglify from 'gulp-uglify';
 import filter from 'gulp-filter';
 import rename from 'gulp-rename';
@@ -19,6 +18,7 @@ import jshint from 'gulp-jshint';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import browserSync from 'browser-sync';
+import imagemin from 'gulp-imagemin';
 
 // SHARED VARIABLES
 
@@ -29,6 +29,9 @@ let distFolder = './dist',
     scriptEntryPoint = 'src/main.js',
     srcScriptFiles = 'src/**/*.js',
     scriptTestFiles = 'src/**/*-test.js',
+    srcImageFiles = [
+        './src/images/**/*.{gif,jpg,png,svg}'
+    ],
     errorHandler = function(error) {
         util.beep();
         util.log(util.colors.red(`ERROR: ${error.message}`));
@@ -38,14 +41,14 @@ let distFolder = './dist',
 // TASKS
 
 gulp.task('default', ['build']);
-gulp.task('build', ['styles', 'scripts']);
+gulp.task('build', ['styles', 'scripts', 'images']);
 gulp.task('serve', ['build', 'browser-sync', 'watch']);
 gulp.task('lint', ['lintScripts']);
-gulp.task('test', ['testScripts']);
 
 gulp.task('styles', function () {
 	let cssFilter = filter(['**/**/*.css']);
 	return gulp.src(styleEntryPoint)
+        .on('error', errorHandler)
         .pipe(plumber({errorHandler: errorHandler}))
 		.pipe(sourcemaps.init({loadMaps: true}))
 		.pipe(sass())
@@ -60,24 +63,20 @@ gulp.task('styles', function () {
 
 gulp.task('lintScripts', () => {
 	return gulp.src(srcScriptFiles)
+        .on('error', errorHandler)
 		.pipe(plumber({errorHandler: errorHandler}))
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter(stylish));
 });
 
-gulp.task('testScripts', () => {
-	return gulp.src(scriptTestFiles)
-		.pipe(plumber({errorHandler: errorHandler}))
-		.pipe(mocha({reporter: 'spec'}));
-});
-
-gulp.task('scripts', ['lintScripts', 'testScripts'], () => {
+gulp.task('scripts', ['lintScripts'], () => {
 	let b = browserify({
 	    entries: scriptEntryPoint,
 	    debug: true
 	})
 	.transform(babelify);
 	return b.bundle()
+        .on('error', errorHandler)
 		.pipe(plumber({errorHandler: errorHandler}))
 	    .pipe(source('bundle.js'))
 	    .pipe(buffer())
@@ -86,6 +85,14 @@ gulp.task('scripts', ['lintScripts', 'testScripts'], () => {
         .pipe(uglify())
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(distFolder));
+});
+
+gulp.task('images', () => {
+	return gulp.src(srcImageFiles)
+        .on('error', errorHandler)
+		.pipe(plumber({errorHandler: errorHandler}))
+		.pipe(imagemin())
+		.pipe(gulp.dest(`${distFolder}/images`));
 });
 
 gulp.task('browser-sync', ['default'], () => {
@@ -102,4 +109,5 @@ gulp.task('watch', () => {
     gulp.watch(srcViewFiles, [browserSync.reload]);
     gulp.watch(srcStyleFiles, ['styles']);
     gulp.watch(srcScriptFiles, ['scripts', browserSync.reload]);
+    gulp.watch(srcImageFiles, ['images', browserSync.reload]);
 });

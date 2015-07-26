@@ -1,12 +1,14 @@
-// RESET
+// NORMALIZE
 
 @import '../node_modules/node.normalize.scss/_normalize';
 
 // THEME
 
 @import './vars';
-
+@import './reset';
 
 // COMPONENTS
 
-@import './example-component/example-component';
+@import './components/wrapper/wrapper';
+@import './components/button/button';
+@import './components/figure/figure';

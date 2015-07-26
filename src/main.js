@@ -1,5 +1,5 @@
-import exampleComponent from './example-component/example-component';
+import figure from './components/figure/figure';
 
 document.addEventListener('DOMContentLoaded', () => {
-    exampleComponent.init();
+	figure.init();
 });
