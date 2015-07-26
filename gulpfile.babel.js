@@ -19,6 +19,7 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import browserSync from 'browser-sync';
 import imagemin from 'gulp-imagemin';
+import mocha from 'gulp-mocha';
 
 // SHARED VARIABLES
 
@@ -40,9 +41,10 @@ let distFolder = './dist',
 // TASKS
 
 gulp.task('default', ['build']);
-gulp.task('build', ['styles', 'scripts', 'images']);
+gulp.task('build', ['styles', 'scripts', 'images', 'test']);
 gulp.task('serve', ['build', 'browser-sync', 'watch']);
 gulp.task('lint', ['lintScripts']);
+gulp.task('test', ['testScripts']);
 
 gulp.task('styles', function () {
 	let cssFilter = filter(['**/**/*.css']);
@@ -66,6 +68,11 @@ gulp.task('lintScripts', () => {
 		.pipe(plumber({errorHandler: errorHandler}))
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter(stylish));
+});
+
+gulp.task('testScripts', function(){
+    return gulp.src(scriptTestFiles)
+        .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('scripts', ['lintScripts'], () => {
