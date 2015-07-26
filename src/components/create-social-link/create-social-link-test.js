@@ -1,4 +1,4 @@
-import assert from 'assert';
+import {assert} from 'chai';
 import createSocialLink from './create-social-link';
 
 describe('createSocialLink', () => {
@@ -24,4 +24,9 @@ describe('createSocialLink', () => {
 
 		assert.equal(createSocialLink(...socialData), `http://www.linkedin.com/shareArticle?url=www.youtube.com&title=Broadcast Yourself%20%23videos`);
 	});
+
+	// it('should work with deepEqual', () => {
+	// 	let exampleString = 'Hello world';
+	// 	assert.deepEqual(exampleString.split(' '), ['Hello', 'world']);
+	// });
 });
