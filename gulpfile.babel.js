@@ -79,6 +79,13 @@ gulp.task('testScripts', function(done){
 	}, done).start();
 });
 
+gulp.task('testScriptsDebug', function(done){
+	new Server({
+		configFile: __dirname + '/karma.conf.js',
+		autoWatch: true
+	}, done).start();
+});
+
 gulp.task('scripts', ['lintScripts'], () => {
 	let b = browserify({
 	    entries: scriptEntryPoint,
