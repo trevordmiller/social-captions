@@ -20,6 +20,7 @@ import buffer from 'vinyl-buffer';
 import browserSync from 'browser-sync';
 import imagemin from 'gulp-imagemin';
 import mocha from 'gulp-mocha';
+import karma, {Server} from 'karma';
 
 // SHARED VARIABLES
 
@@ -71,9 +72,11 @@ gulp.task('lintScripts', () => {
 		.pipe(jshint.reporter(stylish));
 });
 
-gulp.task('testScripts', function(){
-    return gulp.src(scriptTestFiles)
-        .pipe(mocha({reporter: 'spec'}));
+gulp.task('testScripts', function(done){
+	new Server({
+		configFile: __dirname + '/karma.conf.js',
+		singleRun: true
+	}, done).start();
 });
 
 gulp.task('scripts', ['lintScripts'], () => {
