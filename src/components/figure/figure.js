@@ -1,6 +1,7 @@
 import updateImageSrc from '../update-image-src/update-image-src';
 import openTab from '../open-tab/open-tab';
 import createSocialLink from '../create-social-link/create-social-link';
+import getInputValues from '../get-input-values/get-input-values';
 
 let figure = {
 	init() {
@@ -16,11 +17,7 @@ let figure = {
 		});
 
 		shareButton.addEventListener('click', () => {
-			let socialData = [
-				pictureInput.value,
-				captionInput.value,
-				hashtagInput.value
-			];
+			let socialData = getInputValues([pictureInput, captionInput, hashtagInput]);
 
 			openTab(createSocialLink('twitter', ...socialData));
 			openTab(createSocialLink('linkedIn', ...socialData));

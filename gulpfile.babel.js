@@ -97,6 +97,13 @@ gulp.task('scripts', ['lintScripts'], () => {
 		.pipe(gulp.dest(distFolder));
 });
 
+gulp.task('testScriptsDebug', function(done){
+	new Server({
+		configFile: __dirname + '/karma.conf.js',
+		autoWatch: true
+	}, done).start();
+});
+
 gulp.task('images', () => {
 	return gulp.src(srcImageFiles)
         .on('error', errorHandler)

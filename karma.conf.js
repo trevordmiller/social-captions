@@ -16,7 +16,7 @@ module.exports =  function (config) {
 			transform: ['babelify']
 		},
 
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         frameworks: ['mocha', 'chai', 'browserify'],
         reporters: ['spec'],
         port: 9876,
